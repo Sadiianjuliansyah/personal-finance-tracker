@@ -2,7 +2,7 @@
 
 
 const CACHE_NAME =
-    "personal-finance-tracker-v3";
+    "personal-finance-tracker-v4";
 
 
 const APP_FILES = [

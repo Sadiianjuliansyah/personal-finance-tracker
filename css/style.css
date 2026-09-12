@@ -3335,3 +3335,210 @@ body {
     }
 
 }
+
+/* ========================================
+   THEME OPTIONS
+======================================== */
+
+.theme-options {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+
+.theme-option {
+    padding: 9px 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--surface);
+    color: var(--text-primary);
+
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.theme-option.active {
+    border-color: var(--blue);
+
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+
+/* ========================================
+   DARK THEME VARIABLES
+======================================== */
+
+html[data-theme="dark"] {
+
+    --bg-main: #070b12;
+
+    --surface: #111827;
+    --surface-soft: #172033;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-sidebar: #cbd5e1;
+
+    --border: #263244;
+
+    --shadow:
+        0 4px 20px
+        rgba(0, 0, 0, 0.22);
+}
+
+
+/* ========================================
+   DARK THEME
+======================================== */
+
+html[data-theme="dark"] body {
+    background: var(--bg-main);
+    color: var(--text-primary);
+}
+
+
+html[data-theme="dark"] .topbar {
+    background:
+        rgba(17, 24, 39, 0.94);
+
+    border-color: var(--border);
+}
+
+
+html[data-theme="dark"] .topbar-info {
+    background: var(--surface-soft);
+}
+
+
+html[data-theme="dark"] .finance-card,
+html[data-theme="dark"] .summary-card,
+html[data-theme="dark"] .asset-summary-card,
+html[data-theme="dark"] .allocation-summary-card,
+html[data-theme="dark"] .report-summary-card,
+html[data-theme="dark"] .settings-card,
+html[data-theme="dark"] .target-summary > div,
+html[data-theme="dark"] .dashboard-coming-soon {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+
+html[data-theme="dark"] .transaction-card,
+html[data-theme="dark"] .asset-card,
+html[data-theme="dark"] .allocation-card,
+html[data-theme="dark"] .target-card,
+html[data-theme="dark"] .ranking-item,
+html[data-theme="dark"] .report-ranking-item,
+html[data-theme="dark"] .settings-information > div {
+    background: var(--surface-soft);
+    border-color: var(--border);
+}
+
+
+html[data-theme="dark"] .asset-category-card {
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #172033
+        );
+
+    border-color: var(--border);
+}
+
+
+html[data-theme="dark"] .form-group label {
+    color: #cbd5e1;
+}
+
+
+html[data-theme="dark"] .form-group input,
+html[data-theme="dark"] .form-group select,
+html[data-theme="dark"] .dashboard-filter-group select,
+html[data-theme="dark"] .transaction-search input,
+html[data-theme="dark"] .transaction-toolbar-filter select {
+    background: #0f172a;
+    color: #f8fafc;
+
+    border-color: #334155;
+}
+
+
+html[data-theme="dark"] .form-group input::placeholder,
+html[data-theme="dark"] .transaction-search input::placeholder {
+    color: #64748b;
+}
+
+
+html[data-theme="dark"] .calculated-field {
+    background: #0f172a;
+    border-color: #334155;
+}
+
+
+html[data-theme="dark"] #target-current:disabled {
+    background: #1e293b;
+    color: #94a3b8;
+}
+
+
+html[data-theme="dark"] .btn-secondary {
+    background: #172033;
+    color: #e2e8f0;
+
+    border-color: #334155;
+}
+
+
+html[data-theme="dark"] .btn-danger {
+    background: rgba(220, 38, 38, 0.10);
+}
+
+
+html[data-theme="dark"] .mobile-nav {
+    background:
+        rgba(17, 24, 39, 0.97);
+
+    border-color: var(--border);
+}
+
+
+html[data-theme="dark"] .theme-option {
+    background: #172033;
+    color: #e2e8f0;
+
+    border-color: #334155;
+}
+
+
+html[data-theme="dark"] .theme-option.active {
+    background:
+        rgba(14, 165, 233, 0.18);
+
+    color: #7dd3fc;
+
+    border-color: #0ea5e9;
+}
+
+
+/* ========================================
+   CHART DARK MODE
+======================================== */
+
+html[data-theme="dark"] canvas {
+    color-scheme: dark;
+}

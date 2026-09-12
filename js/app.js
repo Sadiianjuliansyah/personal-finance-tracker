@@ -156,6 +156,149 @@ async function registerServiceWorker() {
 
 }
 
+const THEME_STORAGE_KEY =
+    "personal-finance-theme";
+
+
+function getSavedTheme() {
+
+    return (
+        localStorage.getItem(
+            THEME_STORAGE_KEY
+        ) || "system"
+    );
+
+}
+
+
+function getSystemTheme() {
+
+    return window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches
+        ? "dark"
+        : "light";
+
+}
+
+
+function applyTheme(theme) {
+
+    const finalTheme =
+        theme === "system"
+            ? getSystemTheme()
+            : theme;
+
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        finalTheme
+    );
+
+
+    document
+        .querySelectorAll(
+            ".theme-option"
+        )
+        .forEach((button) => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.themeValue ===
+                    theme
+            );
+
+        });
+
+
+    const themeMeta =
+        document.querySelector(
+            'meta[name="theme-color"]'
+        );
+
+
+    if (themeMeta) {
+
+        themeMeta.setAttribute(
+            "content",
+            finalTheme === "dark"
+                ? "#0b1220"
+                : "#f5f7fb"
+        );
+
+    }
+
+}
+
+
+function saveTheme(theme) {
+
+    localStorage.setItem(
+        THEME_STORAGE_KEY,
+        theme
+    );
+
+
+    applyTheme(theme);
+
+}
+
+
+function setupTheme() {
+
+    const savedTheme =
+        getSavedTheme();
+
+
+    applyTheme(
+        savedTheme
+    );
+
+
+    document
+        .querySelectorAll(
+            ".theme-option"
+        )
+        .forEach((button) => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    saveTheme(
+                        button.dataset.themeValue
+                    );
+
+                }
+            );
+
+        });
+
+
+    window
+        .matchMedia(
+            "(prefers-color-scheme: dark)"
+        )
+        .addEventListener(
+            "change",
+            () => {
+
+                if (
+                    getSavedTheme() ===
+                    "system"
+                ) {
+
+                    applyTheme(
+                        "system"
+                    );
+
+                }
+
+            }
+        );
+
+}
+
 async function initApp() {
 
     try {
@@ -164,9 +307,11 @@ async function initApp() {
 
         setupNavigation();
 
-        updateDate();
+updateDate();
 
-        registerServiceWorker();
+setupTheme();
+
+registerServiceWorker();
 
         console.log(
             "Personal Finance Tracker berhasil dijalankan."
